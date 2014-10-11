@@ -82,7 +82,7 @@ $off->box(filled => 1, color => '#ffffff');
 sub {
 	my $req = Plack::Request->new(shift);
 
-	my $text = $req->param('text') || 'MORSE';
+	my $text = $req->param('text') || $req->param('TEXT') || 'APPEND TEXT QUERY PARAMETER';
 	$text = substr($text, 0, 100);
 
 	my $wpm = $req->param('wpm') || 10;

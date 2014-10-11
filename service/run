@@ -1,0 +1,13 @@
+#!/bin/sh
+exec 2>&1
+export PERL=/home/cho45/perl5/perlbrew/perls/perl-5.14.2
+export PLACK_ENV=production
+cd /home/cho45/project/MorseGIF
+
+exec setuidgid cho45 \
+        $PERL/bin/start_server --port=6000 -- $PERL/bin/plackup -s Starlet\
+        --max-workers=2 \
+        --max-reqs-per-child=500 \
+        -a app.psgi
+
+
